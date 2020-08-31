@@ -46,6 +46,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!--引入事务包-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>5.2.4.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>

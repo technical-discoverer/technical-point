@@ -18,8 +18,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 例如：对应到上面的案例，我们可以在用户注册成功后发布事件，事件监听者监听到用户注册成功的事件后，触发发送邮件和发送短信的业务。
  * 由于要触发发送邮件和短信，因此要从事件发布者那里获取对应的邮件地址和手机号码，而这些信息是通过事件这个桥梁进行连接的，所以，
  * 事件中必须包含邮件地址和手机号码这两个属性。
- *
+ * 1.使用spring的方式进行操作实例
  *  访问链接：http://localhost:8888/listener/register?id=1&name=john&phoneNum=13111111111&email=123@163.com
+ * 2.使用注解形式进行操作实例
+ *  访问链接：http://localhost:8888/listener/activate?linkAddress=https://mvnrepository.com/artifact/org.springframework/spring-tx/5.2.4.RELEASE
  */
 @SpringBootApplication
 public class EventPublishAwarePointApplication {

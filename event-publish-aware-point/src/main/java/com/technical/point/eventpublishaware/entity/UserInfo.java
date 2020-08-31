@@ -17,6 +17,8 @@ public class UserInfo {
     private String phoneNum;
     private String email;
 
+    private String activateLinkAddress;//激活地址
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -24,6 +26,7 @@ public class UserInfo {
                 ", name='" + name + '\'' +
                 ", phoneNum='" + phoneNum + '\'' +
                 ", email='" + email + '\'' +
+                ", activateLinkAddress='" + activateLinkAddress + '\'' +
                 '}';
     }
 }
