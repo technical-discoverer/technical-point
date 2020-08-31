@@ -23,6 +23,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 2.使用注解形式进行操作实例
  *  访问链接：http://localhost:8888/listener/activate?linkAddress=https://mvnrepository.com/artifact/org.springframework/spring-tx/5.2.4.RELEASE
  *       新：http://localhost:8888/listener/activate?linkAddress=http://www.163.com&phoneNo=18265535612
+ * @author gaogba
  */
 @SpringBootApplication
 public class EventPublishAwarePointApplication {
