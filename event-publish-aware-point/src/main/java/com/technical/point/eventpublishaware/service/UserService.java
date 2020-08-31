@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
  * @Description 逻辑处理层
  * @Author gaogba
@@ -22,36 +24,46 @@ public class UserService implements ApplicationEventPublisherAware {
 
     private ApplicationEventPublisher applicationEventPublisher;
 
+    private ConcurrentHashMap<String,Object> concurrentHashMap = new ConcurrentHashMap<>();
     /**
      * 用户注册
      *
      * @param user
      * @return
      */
-    public boolean register(UserInfo user) {
+    public boolean register(UserInfo user) throws Exception {
 
         //用户注册
-        System.out.println("[service]用户[" + user + "]注册成功！");
+        System.out.println("[service]用户[" + user + "]注册中......！");
 
         //消息发布
         applicationEventPublisher.publishEvent(new UserRegisterEvent(this, user));
 
+        System.out.println("[service]用户[" + user + "]注册成功！");
         return true;
     }
 
 
     /**
-     * 用户激活
+     * 用户激活  concurrentHashMap:用于控制并发量避免重复提交
      *
      * @param linkAddress
      * @return
      */
-    public boolean activate(String linkAddress) {
+    public boolean activate(String linkAddress,String phoneNo) throws Exception {
+        //避免重复提交
+        if (concurrentHashMap.containsKey(phoneNo)){
+            throw new Exception("您已经发起请求，请勿重复提交！");
+        }
+
+        concurrentHashMap.put(phoneNo,Byte.MIN_VALUE);
         //用户激活
         System.out.println("[service]用户[" + linkAddress + "]激活成功！");
         UserInfo info = new UserInfo();
         info.setActivateLinkAddress(linkAddress);
+        info.setPhoneNum(phoneNo);
         applicationEventPublisher.publishEvent(new PayloadApplicationEvent<UserInfo>(this,info));
+        System.out.println("[service]用户[" + linkAddress + "]激活中.....！");
         return true;
     }
 
@@ -68,6 +80,7 @@ public class UserService implements ApplicationEventPublisherAware {
     public void listenerActivate(PayloadApplicationEvent<UserInfo> event){
         System.out.println("========开始激活=======");
         //链接地址
+        concurrentHashMap.remove(event.getPayload().getPhoneNum());
         System.out.println("正在跳转至： " + event.getPayload().getActivateLinkAddress());
         System.out.println("========激活成功!=======");
     }

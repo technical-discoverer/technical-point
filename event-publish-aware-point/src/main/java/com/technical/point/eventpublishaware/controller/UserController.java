@@ -5,6 +5,7 @@ import com.technical.point.eventpublishaware.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -26,7 +27,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/register")
-    public String register(UserInfo user) {
+    public String register(UserInfo user) throws Exception {
         //进行注册
         userRegisterService.register(user);
         return "[UserController]注册用户成功！";
@@ -39,8 +40,8 @@ public class UserController {
      * @return
      */
     @RequestMapping("/activate")
-    public String activate(String linkAddress) {
-        userRegisterService.activate(linkAddress);
+    public String activate(@RequestParam String linkAddress, @RequestParam String phoneNo) throws Exception {
+        userRegisterService.activate(linkAddress,phoneNo);
         return "[UserController]用户激活成功！";
     }
 
