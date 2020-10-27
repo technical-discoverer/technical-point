@@ -21,19 +21,43 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-
+        <!--依赖包配置-->
+        <org.apache.commons.version>3.7</org.apache.commons.version>
+        <org.apache.poi.version>3.16</org.apache.poi.version>
+        <org.apache.commons.version>3.11</org.apache.commons.version>
+        <com.alibaba.version>1.2.60</com.alibaba.version>
+        <org.projectlombok.version>1.18.12</org.projectlombok.version>
+        <javax.persistence.version>1.0.2</javax.persistence.version>
+        <org.hibernate.version>6.0.7.Final</org.hibernate.version>
+        <com.squareup.okhttp3.version>3.14.1</com.squareup.okhttp3.version>
+        <javax.servlet.version>2.5</javax.servlet.version>
     </properties>
 
     <distributionManagement>
-
+        <!--指定私服-->
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://10.255.0.110:8081/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://10.255.0.110:8081/content/repositories/snapshots/</url>
+        </snapshotRepository>
     </distributionManagement>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <modules>
+    </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
