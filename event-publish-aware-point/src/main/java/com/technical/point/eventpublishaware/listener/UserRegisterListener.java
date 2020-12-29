@@ -1,6 +1,5 @@
 package com.technical.point.eventpublishaware.listener;
 
-import com.technical.point.eventpublishaware.entity.UserInfo;
 import com.technical.point.eventpublishaware.event.UserRegisterEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;

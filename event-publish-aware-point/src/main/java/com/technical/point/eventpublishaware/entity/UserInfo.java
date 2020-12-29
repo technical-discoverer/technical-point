@@ -3,6 +3,8 @@ package com.technical.point.eventpublishaware.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.StringJoiner;
+
 /**
  * @Description 实体类
  * @Author gaogba
@@ -12,7 +14,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class UserInfo {
-    private Integer id;
     private String name;
     private String phoneNum;
     private String email;
@@ -21,12 +22,11 @@ public class UserInfo {
 
     @Override
     public String toString() {
-        return "UserInfo{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNum='" + phoneNum + '\'' +
-                ", email='" + email + '\'' +
-                ", activateLinkAddress='" + activateLinkAddress + '\'' +
-                '}';
+        return new StringJoiner(", ", UserInfo.class.getSimpleName() + "[", "]")
+                .add("name='" + name + "'")
+                .add("phoneNum='" + phoneNum + "'")
+                .add("email='" + email + "'")
+                .add("activateLinkAddress='" + activateLinkAddress + "'")
+                .toString();
     }
 }

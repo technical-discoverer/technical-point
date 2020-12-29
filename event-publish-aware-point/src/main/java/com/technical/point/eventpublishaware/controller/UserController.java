@@ -3,10 +3,7 @@ package com.technical.point.eventpublishaware.controller;
 import com.technical.point.eventpublishaware.entity.UserInfo;
 import com.technical.point.eventpublishaware.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description 用户中心UserController
@@ -27,7 +24,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/register")
-    public String register(UserInfo user) throws Exception {
+    public String register(@RequestBody UserInfo user) throws Exception {
         //进行注册
         userRegisterService.register(user);
         return "[UserController]注册用户成功！";

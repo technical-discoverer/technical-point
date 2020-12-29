@@ -12,7 +12,7 @@ import org.springframework.context.ApplicationEvent;
  */
 public class UserRegisterEvent<U> extends ApplicationEvent {
 
-    private UserInfo userInfo;
+    private final UserInfo userInfo;
 
 
     public UserRegisterEvent(Object source,UserInfo userInfo) {

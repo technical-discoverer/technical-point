@@ -31,7 +31,7 @@ public class UserService implements ApplicationEventPublisherAware {
      * @param user
      * @return
      */
-    public boolean register(UserInfo user) throws Exception {
+    public boolean register(UserInfo user) {
 
         //用户注册
         System.out.println("[service]用户[" + user + "]注册中......！");
