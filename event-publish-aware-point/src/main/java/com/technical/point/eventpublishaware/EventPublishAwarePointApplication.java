@@ -2,6 +2,7 @@ package com.technical.point.eventpublishaware;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * 启动类
@@ -25,7 +26,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *       新：http://localhost:8888/listener/activate?linkAddress=http://www.163.com&phoneNo=18265535612
  * @author gaogba
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"com.technical.point.eventpublishaware"})
 public class EventPublishAwarePointApplication {
 
     public static void main(String[] args) {
